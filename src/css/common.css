@@ -1,0 +1,10 @@
+/* 美化chrome浏览器滚动条 */
+::-webkit-scrollbar-track-piece{width:8px;background-color:#ffffff;}
+
+::-webkit-scrollbar{width:8px;height:6px;}
+
+::-webkit-scrollbar-thumb{height:50px;background:#ddd; cursor:pointer;border-radius: 8px;}
+
+::-webkit-scrollbar-thumb:hover{background:#ccc; cursor:pointer;}
+
+
