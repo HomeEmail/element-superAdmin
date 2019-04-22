@@ -16,16 +16,17 @@ import NotFound from '@/components/404'
 
 // r就是resolve// 路由也是正常的写法 这种是官方推荐的写的 按模块划分懒加载 
 //第一个参数是个数组，标明依赖的模块，这些会提前加载，第二个是回调函数，在这个回调函数里面的require的文件会被单独打包成一个chunk,不会和主文件打包在一起，这样就生成了两个chunk,第一次加载时只加载主文件，当点击时就会加载单独打包的chunk。
-const ZnHomeAdd = r => require.ensure([], () => r(require('../components/znHome/ZnHomeAdd')), 'ZnHomeAdd');
-const ZnHomeAll = r => require.ensure([], () => r(require('../components/znHome/ZnHomeAll')), 'ZnHomeAll');
-const ZnHomeRecAdd = r => require.ensure([], () => r(require('../components/znHome/ZnHomeRecAdd')), 'ZnHomeRecAdd');
+// const ZnHomeAdd = r => require.ensure([], () => r(require('../components/znHome/ZnHomeAdd')), 'ZnHomeAdd');
+// const ZnHomeAll = r => require.ensure([], () => r(require('../components/znHome/ZnHomeAll')), 'ZnHomeAll');
+// const ZnHomeRecAdd = r => require.ensure([], () => r(require('../components/znHome/ZnHomeRecAdd')), 'ZnHomeRecAdd');
 
 
 
 //欢迎页
 import Welcome from '@/components/welcome'
 
-import test1 from '@/components/test/test1'
+//import test1 from '@/components/test/test1'
+const test1 = r => require.ensure([], () => r(require('@/components/test/test1')), 'test1');
 
 Vue.use(Router)
 
@@ -33,57 +34,46 @@ export default new Router({
   routes: [
     {
       path: '/Home',
-      component: Home,
-      children: [
+      component: Home,//这有个router-view ,孩子节点才生效
+      children: [ //
         {
           path:'/test',
           component:test1,
-          children: [
-            {
-              path: '/test1',
-              component: test1,
-              children: [
-                // {
-                //   path: '',
-                //   component: RecommendAdd
-                // },
-                // {
-                //   path: 'RecommendAdd',
-                //   component: RecommendAdd
-                // }
-              ]
-            }
-          ]
+         
         },
         
         {  //熊猫首页
           path: '/ZnHomeIndex',
-          component: ContentIndex,
+          component: ContentIndex,//这有个router-view,孩子节点才生效
           children: [
             {
               path: '',
-              component: ZnHomeAll
-            },
-            {
-              path: 'ZnHomeAll',
-              component: ZnHomeAll,
-              children: [
-                {
-                  path: 'ZnHomeRecAdd',
-                  component: ZnHomeRecAdd
-                }
-              ]
-            },
-            {
-              path: 'ZnHomeAdd',
-              component: ZnHomeAdd
+              component: Welcome
             }
+            // {
+            //   path: '',
+            //   component: ZnHomeAll
+            // },
+            // {
+            //   path: 'ZnHomeAll',
+            //   component: ZnHomeAll,
+            //   children: [
+            //     {
+            //       path: 'ZnHomeRecAdd',
+            //       component: ZnHomeRecAdd
+            //     }
+            //   ]
+            // },
+            // {
+            //   path: 'ZnHomeAdd',
+            //   component: ZnHomeAdd
+            // }
           ]
         },
         
         {
           path:'/Welcome',
-          component:ContentIndex,
+          component:ContentIndex,//这有个router-view,孩子节点才生效
           children:[
             {
               path: '',
@@ -111,4 +101,4 @@ export default new Router({
       redirect: {path: '/Login'}
     }
   ]
-})
+});

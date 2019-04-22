@@ -62,7 +62,7 @@
     mounted(){
       console.log('login mounted');
 
-      this.ajaxDemo();
+      //this.ajaxDemo();//demo
 
     },
     methods: {
@@ -98,6 +98,9 @@
       },
       async getFileProfix(){
         const _this = this;
+        this.$router.push('Welcome');//去首页 //test
+        return 0;
+        
         try{
           let data=await getDataSync(FileProfixUrl,null);
           //this.$store.state.fileProfix.audioProfix = data.audioProfix;//不推荐这种直接赋值更新状态
@@ -114,12 +117,16 @@
       },
       async handleSubmit(ev) {
         var _this = this;
+
+        _this.getFileProfix();//test 
+        return 0;
+
         _this.$refs.ruleForm2.validate(function (valid) {
           
           if (valid) {
             console.log('login welcome!');
             _this.logining = true;
-            (async ()=>{
+            (async ()=>{ //async/await样例
               try {
                 let data=await postDataWithJsonSync(LoginUrl,{
                   loginName:_this.ruleForm2.account,
@@ -136,7 +143,7 @@
             })();
             
 
-            // postDataWithJson(LoginUrl,{
+            // postDataWithJson(LoginUrl,{ //普通回调方式样例
             //   loginName:_this.ruleForm2.account,
             //   passwd:_this.ruleForm2.checkPass,
             //   verificationCode:_this.ruleForm2.captcha

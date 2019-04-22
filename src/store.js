@@ -22,8 +22,7 @@ const state = {
 
 /* 从本地存储读取数据 */
 for (var item in state) {
-  localStorage.getItem(item) ?
-    state[item] = JSON.parse(localStorage.getItem(item)) : false;
+  localStorage.getItem(item) ? state[item] = JSON.parse(localStorage.getItem(item)) : false;
 }
 
 const mutations = {

@@ -24,20 +24,17 @@
         <el-submenu index="1">
           <template slot="title"><i class="el-icon-menu"></i>TV维护页面</template>
 
-          <el-menu-item index="/ZnHomeIndex/ZnHomeAll">Linux首页</el-menu-item>
+          <el-menu-item index="/ZnHomeIndex/">Linux首页</el-menu-item>
           
         </el-submenu>
 
         <el-submenu index="2">
           <template slot="title"><i class="el-icon-service"></i>媒资</template>
-          <!-- <el-menu-item-group>
-            <el-menu-item index="/VideoIndex">
-              节目库
+          <el-menu-item-group>
+            <el-menu-item index="/test">
+              测试
             </el-menu-item>
-            <el-menu-item index="/SubjectIndex">
-              专题库
-            </el-menu-item>
-          </el-menu-item-group> -->
+          </el-menu-item-group>
         </el-submenu>
 
       </el-menu>
