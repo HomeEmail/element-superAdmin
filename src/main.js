@@ -7,7 +7,7 @@ import store from './store'
 
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import './css/common.css'
+import './css/common.less'
 
 Vue.use(Element,{size:'mini'}); //medium small mini
 

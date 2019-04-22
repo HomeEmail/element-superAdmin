@@ -55,16 +55,7 @@ module.exports = {
         pathRewrite: {
           '^/service': 'service'
         }
-      },
-      //测试的图库 http://172.16.146.56:81/panda/uploadFile/image/
-      //u小兔正式图库 http://172.16.146.21:81/panda/uploadFile/image/
-      // '/uploadFile/image/': {
-      //   target: 'http://172.16.146.56:81/panda/',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/uploadFile/image': '/uploadFile/image'
-      //   }
-      // }
+      }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

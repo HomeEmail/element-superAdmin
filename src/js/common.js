@@ -1,6 +1,4 @@
-/**
- * Created by fute on 17/4/5.
- */
+
 export const openAlert = function (context, title, content, clickCallback) {
   var _this = context;
   clickCallback=clickCallback||function(){};

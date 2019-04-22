@@ -1,6 +1,4 @@
-/**
- * Created by fute on 2017/4/19.
- */
+
 export const BaseImgUrl = 'http://172.16.146.32:81/cms/uploadFile/image/';
 
 //登陆
