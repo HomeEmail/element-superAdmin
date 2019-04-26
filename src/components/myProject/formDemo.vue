@@ -1,7 +1,16 @@
 <template>
   <div>
+    <br/>
+    <p style="font-size:16px;line-height:30px;">此样例展示了全部已经封装好的element-ui表单组件及其属性、方法和事件；注意：有个别原有的element组件、属性未封装</p>
+    <p style="font-size:16px;line-height:30px;">表单配置属性全部参考element-ui表单组件的属性，使用驼峰格式命名</p>
+    <br/>
+    <hr/>
+    <br/>
     <h2>行内表单</h2>
     <dynamic-form input="formObj"></dynamic-form>
+    <br/>
+    <hr/>
+    <br/>
     <h2>典型表单</h2>
     <dynamic-form input="formObj1"></dynamic-form>
   </div>
@@ -33,9 +42,9 @@ export default {
   mounted() {},
   methods: {
     onSubmit(formName){
-      console.log(formName,this.formObj.paramValue,this.formObj.paramValue.startDate);
-      if(!!!this.formObj.refObj) return ;
-      this.formObj.refObj.validate((valid) => {
+      console.log(formName,this[formName].paramValue,this[formName].paramValue.startDate);
+      if(!!!this[formName].refObj) return ;
+      this[formName].refObj.validate((valid) => {
         if (valid) {
           alert('submit!');
         } else {
@@ -45,13 +54,16 @@ export default {
       });
     },
     onReset(formName){
-      if(!!!this.formObj.refObj) return ;
-      this.formObj.refObj.resetFields();//当开启有keep-alive，数据会缓存组件关闭前的值 导致清空不了
+      if(!!!this[formName].refObj) return ;
+      this[formName].refObj.resetFields();//当开启有keep-alive，数据会缓存组件关闭前的值 导致清空不了
       //尝试这样清空数据
-      // for(let key in this.formObj.paramValue){
-      //   this.formObj.paramValue[key]='';
+      // for(let key in this[formName].paramValue){
+      //   this[formName].paramValue[key]='';
       // }
       console.log('this.data',this);
+    },
+    cascaderChange(value){
+      console.log('cascaderChange',value);
     },
   },
 }
