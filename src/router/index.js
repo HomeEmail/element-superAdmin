@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Login from '@/components/users/Login'
+import formDemo from '@/components/dynamicForm/formDemo'
 
 import ContentIndex from '@/components/ContentIndex'
 
@@ -40,6 +41,11 @@ export default new Router({
           path:'/test',
           component:test1,
          
+        },
+        {
+          path:'/formDemo',
+          component:formDemo,
+          name:'formDemo',
         },
         
         {  //熊猫首页

@@ -1,7 +1,7 @@
 <template>
 
-<el-container>
-  <el-header class="layoutHeader">
+<div class="layoutPage">
+  <div class="layoutHeader">
     <div class="leftTopDiv">
       <img ref="logoIndex" class="logo" src="../assets/logo.png" />
       <span class="cmsName">熊猫乐园管理后台系统</span>
@@ -10,10 +10,10 @@
       <span class="userName">您好, {{userName}}</span>
       <el-button type="text" @click="handleExit()">退出</el-button>
     </div>
-  </el-header>
+  </div>
 
-  <el-container>
-    <el-aside width="200px">
+  <div class="layoutCenter">
+    <div class="asideBox">
       <el-menu :default-openeds="['1','2','3','4','5']"  @open="handleOpen" @close="handleClose" :router="true" :default-active="menuDefaultActive">
 
         <el-menu-item index="/Welcome">
@@ -38,12 +38,13 @@
         </el-submenu>
 
       </el-menu>
-    </el-aside>
-    <el-main>
+    </div>
+    <div class="mainBox">
       <router-view></router-view>
-    </el-main>
-  </el-container>
-</el-container>
+    </div>
+  </div>
+
+</div>
 
   
 </template>
@@ -108,37 +109,14 @@
 
 
 <style>
-  .el-header, .el-footer {
-    /*background-color: #E9EEF3;*/
-    color: #222;
-    text-align: center;
-    overflow: hidden;
-  }
-  
-  .el-aside {
-    /*background-color: #E9EEF3;*/
-    color: #222;
-    text-align: left;
-    
-  }
-  
-  .el-main {
-    color: #222;
-    text-align: left;
-    
-  }
-  #app,.app{
-    height: 100%;
-  }
-  body .el-container {
-    
-    height: 100%;
-  }
-  html,body {
+ 
+  html,body,.app,#app{
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden;
   }
+
   
   
 </style>
@@ -146,18 +124,62 @@
 
 <style scoped >
   
+  .layoutPage{
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .layoutHeader{
+    border-bottom: 1px #ddd solid;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+  }
+  .layoutCenter{
+    position: absolute;
+    top: 61px;
+    left: 0px;
+    width:100%;
+    bottom:0px;
+  }
+  .asideBox{
+    height: 100%;
+    width:200px;
+    border-right: solid 1px #e6e6e6;
+    position: relative;
+    z-index: 2;
+    overflow:auto;
+  }
+  .mainBox{
+    overflow:auto;
+    height: 100%;
+    width: 100%;
+    padding-left:200px;
+    position: absolute;
+    left: 0px;
+    top:0px;
+    z-index: 1;
+  }
+  .el-menu{
+    border-right:0px;
+  }
+
   .leftTopDiv {
     /*background: #2f6fad;*/
     float: left;
     display: inline-block;
     line-height: 60px;
     vertical-align: middle;
+    padding-left:20px;
   }
 
   .leftTopDiv .logo{
     vertical-align: middle;
     height: 40px;
     box-shadow: 0px 0px 10px 1px #ccc;
+
   }
 
   .leftTopDiv .cmsName {
@@ -171,15 +193,12 @@
     float: right;
     display: inline-block;
     line-height: 60px;
+    padding-right:20px;
   }
   .rightTopDiv .userName{
     font-size: 13px;
     color: #666;
     padding: 0px 20px;
-  }
-
-  .layoutHeader{
-    border-bottom: 1px #ddd solid;
   }
 
 
