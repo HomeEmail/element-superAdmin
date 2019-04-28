@@ -155,7 +155,6 @@
   .mainBox{
     overflow:auto;
     height: 100%;
-    width: 100%;
     padding-left:200px;
     position: absolute;
     left: 0px;
@@ -168,7 +167,7 @@
 
   .leftTopDiv {
     /*background: #2f6fad;*/
-    float: left;
+    
     display: inline-block;
     line-height: 60px;
     vertical-align: middle;

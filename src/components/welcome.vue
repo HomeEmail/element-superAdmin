@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="welcomePage">
 	<h1>欢迎您！{{userName}}</h1>
   <p style="text-indent:50px;padding:10px 0px;">当前时间：{{dateStr}}</p>
   <p style="text-indent:50px;padding:10px 0px;">少儿是祖国的花朵！教育是国之根本！为实现祖国富强，人民富足，复兴中华，关注少儿教育是我们身上的重任，合理引导孩子和家长看动画有益身心健康，父子关系，家庭氛围。所谓家好，国好，人人好。</p>
@@ -47,5 +47,8 @@
 <style scoped>
 p{
   line-height: 30px;
+}
+.welcomePage{
+  padding: 20px;
 }
 </style>

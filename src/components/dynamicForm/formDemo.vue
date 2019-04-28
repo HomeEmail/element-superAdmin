@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="formDemoPage">
     <br/>
     <p style="font-size:16px;line-height:30px;">此样例展示了全部已经封装好的element-ui表单组件及其属性、方法和事件；注意：有个别原有的element组件、属性未封装</p>
     <p style="font-size:16px;line-height:30px;">表单配置属性全部参考element-ui表单组件的属性，使用驼峰格式命名</p>
@@ -69,7 +69,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
- 
+  .formDemoPage{
+    padding: 20px;
+  }
 </style>
 <style lang="less">
   // .input-text-demo{
