@@ -33,6 +33,7 @@
     captchaUrl
   } from "../../js/url"
   export default {
+    name:'login',
     data() {
       return {
         logining: false,
@@ -98,7 +99,7 @@
       },
       async getFileProfix(){
         const _this = this;
-        this.$router.push('Welcome');//去首页 //test
+        this.$router.push('welcome');//去首页 //test
         return 0;
         
         try{
@@ -106,7 +107,7 @@
           //this.$store.state.fileProfix.audioProfix = data.audioProfix;//不推荐这种直接赋值更新状态
           //this.$store.state.fileProfix.imageProfix = data.imageProfix;
           this.$store.commit("setFileProfix", data);//通过提交commit来更新数据状态
-          this.$router.push('Welcome');//去首页
+          this.$router.push('welcome');//去首页
         }catch(err){
           openAlert(_this,'提示',err,null);
         }

@@ -8,7 +8,7 @@
   
 
   export default {
-    name: 'test',
+    name: 'test1',
     methods: {
       handleExit(index, row) {
         console.log(index, row);

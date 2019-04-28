@@ -14,14 +14,27 @@
 
   <div class="layoutCenter">
     <div class="asideBox">
-      <el-menu :default-openeds="['1','2','3','4','5']"  @open="handleOpen" @close="handleClose" :router="true" :default-active="menuDefaultActive">
+      <el-menu @open="handleOpen" @close="handleClose" :router="true" :default-active="menuDefaultActive">
 
-        <el-menu-item index="/Welcome">
-          <i class="el-icon-info"></i>
-          欢迎页
-        </el-menu-item>
+        <template v-for="(item,index) in routes">
+          <el-menu-item v-if="!!!item.children&&!!!item.hideAtAsideMenu" :index="item.path" :key="index">
+            <i :class="item.meta.icon" v-if="!!item.meta.icon"></i>
+            {{item.meta.title}}
+          </el-menu-item>
+          <el-submenu v-if="!!item.children" :index="index+''" :key="index">
+            <template slot="title"><i :class="item.meta.icon" v-if="!!item.meta.icon"></i>{{item.meta.title}}</template>
+            <template v-for="(item2,index2) in item.children">
+              <el-menu-item v-if="!!!item2.hideAtAsideMenu" :index="item2.path" :key="index2">
+                <i :class="item2.meta.icon" v-if="!!item2.meta.icon"></i>
+                {{item.meta.title}}
+              </el-menu-item>
+            </template>
+          </el-submenu>
+        </template>
 
-        <el-submenu index="1">
+        
+
+        <!-- <el-submenu index="1">
           <template slot="title"><i class="el-icon-menu"></i>TV维护页面</template>
 
           <el-menu-item index="/ZnHomeIndex/">Linux首页</el-menu-item>
@@ -35,7 +48,7 @@
               测试
             </el-menu-item>
           </el-menu-item-group>
-        </el-submenu>
+        </el-submenu> -->
 
       </el-menu>
     </div>
@@ -50,18 +63,20 @@
 </template>
 
 <script>
-  import {postCQeduData} from "../js/network"
-  import {openAlert} from "../js/common"
+  import {postCQeduData} from "../js/network";
+  import {openAlert} from "../js/common";
+  import routesConfig from '@/router/config.js';
   import {
     LogoutUrl
-  } from "../js/url"
+  } from "../js/url";
 
   export default {
     name: 'Home',
     data(){
       return {
         userName:'',
-        menuDefaultActive: '' //'/ZnHomeIndex/ZnHomeAll'
+        menuDefaultActive: '', //'/ZnHomeIndex/ZnHomeAll'
+        routes:routesConfig[0].children,
       }
     },
     methods:{
@@ -69,7 +84,7 @@
         //console.log(index, row);
         let _this=this;
         postCQeduData(_this,LogoutUrl,null,function(data){
-          _this.$router.push('/Login');
+          _this.$router.push('/login');
         },function(desc){
 
         });
@@ -104,7 +119,7 @@
     destroyed(){
 
     }
-  }
+  };
 </script>
 
 

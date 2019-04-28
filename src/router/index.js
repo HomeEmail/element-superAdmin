@@ -1,14 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Login from '@/components/users/Login'
-import formDemo from '@/components/dynamicForm/formDemo'
+import routes from './config.js'
 
-import ContentIndex from '@/components/ContentIndex'
+//import Login from '@/components/users/Login'
+//import formDemo from '@/components/dynamicForm/formDemo'
 
-import Home from '@/components/Home'
-
-import NotFound from '@/components/404'
 
 //熊猫Linux首页
 // import ZnHomeAdd from '@/components/znHome/ZnHomeAdd'
@@ -24,87 +21,14 @@ import NotFound from '@/components/404'
 
 
 //欢迎页
-import Welcome from '@/components/welcome'
+//import Welcome from '@/components/welcome'
 
 //import test1 from '@/components/test/test1'
-const test1 = r => require.ensure([], () => r(require('@/components/test/test1')), 'test1');
+//const test1 = r => require.ensure([], () => r(require('@/components/test/test1')), 'test1');
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/Home',
-      component: Home,//这有个router-view ,孩子节点才生效
-      children: [ //
-        {
-          path:'/test',
-          component:test1,
-         
-        },
-        {
-          path:'/formDemo',
-          component:formDemo,
-          name:'formDemo',
-        },
-        
-        {  //熊猫首页
-          path: '/ZnHomeIndex',
-          component: ContentIndex,//这有个router-view,孩子节点才生效
-          children: [
-            {
-              path: '',
-              component: Welcome
-            }
-            // {
-            //   path: '',
-            //   component: ZnHomeAll
-            // },
-            // {
-            //   path: 'ZnHomeAll',
-            //   component: ZnHomeAll,
-            //   children: [
-            //     {
-            //       path: 'ZnHomeRecAdd',
-            //       component: ZnHomeRecAdd
-            //     }
-            //   ]
-            // },
-            // {
-            //   path: 'ZnHomeAdd',
-            //   component: ZnHomeAdd
-            // }
-          ]
-        },
-        
-        {
-          path:'/Welcome',
-          component:ContentIndex,//这有个router-view,孩子节点才生效
-          children:[
-            {
-              path: '',
-              component: Welcome
-            }
-          ]
-        },
-        {
-          path:'',
-          component:Welcome
-        }
-      ]
-    },
-    {
-      path: '/Login',
-      component: Login
-    },
-    {
-      path: '/404',
-      component: NotFound,
-      name: ''
-    },
-    {
-      path: '*',
-      redirect: {path: '/Login'}
-    }
-  ]
+  mode: 'history',//hash //history模式下webpact配置 assetsPublicPath 改成 / ;hash模式下则为空
+  routes
 });
