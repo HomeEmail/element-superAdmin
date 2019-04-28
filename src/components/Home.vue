@@ -13,7 +13,7 @@
   </div>
 
   <div class="layoutCenter">
-    <div class="asideBox">
+    <div class="asideBox" :style="asideBoxCss">
       <el-menu @open="handleOpen" @close="handleClose" :router="true" :default-active="menuDefaultActive">
 
         <template v-for="(item,index) in routes">
@@ -52,7 +52,7 @@
 
       </el-menu>
     </div>
-    <div class="mainBox">
+    <div class="mainBox" :style="mainBoxCss">
       <router-view></router-view>
     </div>
   </div>
@@ -77,7 +77,20 @@
         userName:'',
         menuDefaultActive: '', //'/ZnHomeIndex/ZnHomeAll'
         routes:routesConfig[0].children,
+        asideWidth:250,
       }
+    },
+    computed:{
+      asideBoxCss(){
+        return {
+          width:this.asideWidth+'px',
+        };
+      },
+      mainBoxCss(){
+        return {
+          paddingLeft:this.asideWidth+'px',
+        };
+      },
     },
     methods:{
       handleExit(index, row) {
