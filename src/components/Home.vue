@@ -4,7 +4,7 @@
   <div class="layoutHeader">
     <div class="leftTopDiv">
       <img ref="logoIndex" class="logo" src="../assets/logo.png" />
-      <span class="cmsName">熊猫乐园管理后台系统</span>
+      <span class="cmsName">管理后台系统</span>
     </div>
     <div class="rightTopDiv">
       <span class="userName">您好, {{userName}}</span>
@@ -17,19 +17,25 @@
       <el-menu @open="handleOpen" @close="handleClose" :router="true" :default-active="menuDefaultActive">
 
         <template v-for="(item,index) in routes">
-          <el-menu-item v-if="!!!item.children&&!!!item.hideAtAsideMenu" :index="item.path" :key="index">
-            <i :class="item.meta.icon" v-if="!!item.meta.icon"></i>
-            {{item.meta.title}}
-          </el-menu-item>
-          <el-submenu v-if="!!item.children" :index="index+''" :key="index">
+          
+          <el-submenu v-if="!!!item.meta.hideAtAsideMenu&&!!item.children" :index="index+''" :key="index">
             <template slot="title"><i :class="item.meta.icon" v-if="!!item.meta.icon"></i>{{item.meta.title}}</template>
             <template v-for="(item2,index2) in item.children">
-              <el-menu-item v-if="!!!item2.hideAtAsideMenu" :index="item2.path" :key="index2">
+              <el-menu-item v-if="!!!item2.meta.hideAtAsideMenu" :index="item2.path" :key="`index2-${index2}`">
                 <i :class="item2.meta.icon" v-if="!!item2.meta.icon"></i>
-                {{item.meta.title}}
+                {{item2.meta.title}}
               </el-menu-item>
             </template>
           </el-submenu>
+          <template v-else-if="!!item.meta.hideAtAsideMenu&&!!item.children">
+            <template v-for="(item3,index3) in item.children">
+              <el-menu-item v-if="!!!item3.meta.hideAtAsideMenu" :index="item3.path" :key="`index3-${index3}`">
+                <i :class="item3.meta.icon" v-if="!!item3.meta.icon"></i>
+                {{item3.meta.title}}
+              </el-menu-item>
+            </template>
+          </template>
+
         </template>
 
         
@@ -63,8 +69,6 @@
 </template>
 
 <script>
-  import {postCQeduData} from "../js/network";
-  import {openAlert} from "../js/common";
   import routesConfig from '@/router/config.js';
   import {
     LogoutUrl
@@ -76,7 +80,7 @@
       return {
         userName:'',
         menuDefaultActive: '', //'/ZnHomeIndex/ZnHomeAll'
-        routes:routesConfig[0].children,
+        routes:routesConfig,
         asideWidth:250,
       }
     },
@@ -96,11 +100,7 @@
       handleExit(index, row) {
         //console.log(index, row);
         let _this=this;
-        postCQeduData(_this,LogoutUrl,null,function(data){
-          _this.$router.push('/login');
-        },function(desc){
-
-        });
+       
         
       },
       handleOpen(key,keyPath){

@@ -33,7 +33,7 @@
     },
     created(){
       this.userName=this.$store.state.userInfo.userName;
-      this.dateStr=new Date().Format("yyyy-MM-dd hh:mm:ss");
+      this.dateStr=new Date();
     },
     activated(){
 
