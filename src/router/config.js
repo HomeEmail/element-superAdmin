@@ -77,6 +77,14 @@ export default [
           title:'动态表单demo',
         },
       },
+      {
+        path:'/parentChildren',
+        component:r => require.ensure([], () => r(require('@/view/parentChildren/parent')), 'parent'),
+        name:'parent',
+        meta:{
+          title:'父子通讯demo',
+        },
+      },
     ]
   },
 
