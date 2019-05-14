@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding:20px;">
     <h3>这是个父子组件实例</h3>
 
     <h4>通过prop传值给孩子</h4>
