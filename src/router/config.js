@@ -39,7 +39,7 @@ export default [
         component: ()=>import('@/view/znHome/znHome'),
         name:'znHome',
         meta:{
-          title:'熊猫首页',
+          title:'熊猫首页熊猫首页熊猫首页熊猫首页',
           hideAtAsideMenu:false,
           hideAtBreadcrumbsNav:true,
           needCache:true,
