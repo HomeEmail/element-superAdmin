@@ -14,49 +14,11 @@
 
   <div class="layoutCenter">
     <div class="asideBox" :style="asideBoxCss">
-      <el-menu @open="handleOpen" @close="handleClose" :router="true" :default-active="menuDefaultActive">
-
-        <template v-for="(item,index) in routes">
-          
-          <el-submenu v-if="!!!item.meta.hideAtAsideMenu&&!!item.children" :index="index+''" :key="index">
-            <template slot="title"><i :class="item.meta.icon" v-if="!!item.meta.icon"></i>{{item.meta.title}}</template>
-            <template v-for="(item2,index2) in item.children">
-              <el-menu-item v-if="!!!item2.meta.hideAtAsideMenu" :index="item2.path" :key="`index2-${index2}`">
-                <i :class="item2.meta.icon" v-if="!!item2.meta.icon"></i>
-                {{item2.meta.title}}
-              </el-menu-item>
-            </template>
-          </el-submenu>
-          <template v-else-if="!!item.meta.hideAtAsideMenu&&!!item.children">
-            <template v-for="(item3,index3) in item.children">
-              <el-menu-item v-if="!!!item3.meta.hideAtAsideMenu" :index="item3.path" :key="`index3-${index3}`">
-                <i :class="item3.meta.icon" v-if="!!item3.meta.icon"></i>
-                {{item3.meta.title}}
-              </el-menu-item>
-            </template>
-          </template>
-
-        </template>
-
-        
-
-        <!-- <el-submenu index="1">
-          <template slot="title"><i class="el-icon-menu"></i>TV维护页面</template>
-
-          <el-menu-item index="/ZnHomeIndex/">Linux首页</el-menu-item>
-          
-        </el-submenu>
-
-        <el-submenu index="2">
-          <template slot="title"><i class="el-icon-service"></i>媒资</template>
-          <el-menu-item-group>
-            <el-menu-item index="/test">
-              测试
-            </el-menu-item>
-          </el-menu-item-group>
-        </el-submenu> -->
-
+      <el-menu @open="handleOpen" @close="handleClose" :router="true" :collapse="isCollapse" :default-active="menuDefaultActive">
+        <aside-menu-item :routes="routes"></aside-menu-item>
       </el-menu>
+
+      <div class="asideCollapseBtLine" @click="collapseBtClick"><i :class="isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i></div> <!-- el-icon-d-arrow-right -->
     </div>
     <div class="mainBox" :style="mainBoxCss">
       <router-view></router-view>
@@ -70,6 +32,8 @@
 
 <script>
   import routesConfig from '@/router/config.js';
+  import asideMenuItem from './asideMenuItem.vue';
+
   import {
     LogoutUrl
   } from "../js/url";
@@ -82,6 +46,7 @@
         menuDefaultActive: '', //'/ZnHomeIndex/ZnHomeAll'
         routes:routesConfig,
         asideWidth:250,
+        isCollapse: false,
       }
     },
     computed:{
@@ -92,26 +57,30 @@
       },
       mainBoxCss(){
         return {
-          paddingLeft:this.asideWidth+'px',
+          left:this.asideWidth+'px',
         };
       },
     },
+    components:{
+      asideMenuItem,
+    },
     methods:{
+      collapseBtClick(){
+        this.isCollapse=!this.isCollapse;
+        this.asideWidth=this.isCollapse?'64':'250';
+      },
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      },
       handleExit(index, row) {
         //console.log(index, row);
         let _this=this;
        
         
       },
-      handleOpen(key,keyPath){
-        //console.log(key);
-        //console.log(keyPath);
-
-      },
-      handleClose(key,keyPath){
-        //console.log(key);
-        //console.log(keyPath);
-      }
     },
     watch:{
       '$route': function (to, from) {
@@ -136,7 +105,7 @@
 </script>
 
 
-<style>
+<style lang="less">
  
   html,body,.app,#app{
     margin: 0;
@@ -144,14 +113,47 @@
     height: 100%;
     overflow: hidden;
   }
-
   
+  .layoutPage .el-submenu .el-menu-item,.layoutPage .el-menu-item,.layoutPage .el-submenu__title,.layoutPage .el-submenu .el-submenu__title{
+    white-space: normal;
+    height: auto;
+    line-height: normal;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .layoutPage .el-menu--collapse {
+    .el-submenu .el-menu-item,.el-menu-item,.el-submenu__title,.el-submenu .el-submenu__title{
+      height: 56px;
+      line-height: 56px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding: 0px 20px;
+      white-space: nowrap;
+      .submenuTitle{
+        padding-left: 64px;
+      }
+    }
+    .el-submenu__icon-arrow {
+      right: 10px;
+      margin-top: -4px;
+    }
+  }
   
 </style>
 
 
 <style scoped >
+  .asideCollapseBtLine{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+  }
   
+  .el-submenu__title span{
+    line-height: 20px;
+  }
+
   .layoutPage{
     height: 100%;
     overflow: hidden;
@@ -183,9 +185,9 @@
   .mainBox{
     overflow:auto;
     height: 100%;
-    padding-left:200px;
+    left:200px;
     position: absolute;
-    left: 0px;
+    right: 0px;
     top:0px;
     z-index: 1;
   }
@@ -218,7 +220,6 @@
 
   .rightTopDiv {
     float: right;
-    display: inline-block;
     line-height: 60px;
     padding-right:20px;
   }

@@ -1,12 +1,16 @@
 
 import Home from '@/components/Home'
+import contentRouter from '@/components/contentRouter.vue'
 import NotFound from '@/view/404'
 
 export default [
   { 
-    path: '/home',
+    path: '/wc',
     component: Home,//这有个router-view,孩子节点才生效
+    name:'wc',
     meta:{
+      title:'欢迎',
+      icon:'el-icon-service',
       hideAtAsideMenu:true,
       hideAtBreadcrumbsNav:true,
       needCache:true,
@@ -14,21 +18,54 @@ export default [
     },
     children: [
       {
-        path:'/welcome',
+        path:'/welcome3',
         component:()=>import('@/view/welcome'),
-        name:'welcome',
+        name:'welcome3',
         meta:{
-          title:'欢迎页',
+          title:'欢迎页3',
           icon:'el-icon-service',
+        },
+      },
+    ],
+  },
+  { 
+    path: '/home1',
+    component: Home,//这有个router-view,孩子节点才生效
+    name:'home1',
+    meta:{
+      title:'欢迎1',
+      icon:'el-icon-service',
+      hideAtAsideMenu:false,
+      hideAtBreadcrumbsNav:true,
+      needCache:true,
+      hideAtTabNav:true,
+    },
+    children: [
+      {
+        path:'/welcome1',
+        component:()=>import('@/view/welcome'),
+        name:'welcome1',
+        meta:{
+          title:'欢迎页1',
+          //icon:'el-icon-service',
+        },
+      },
+      {
+        path:'/welcome2',
+        component:()=>import('@/view/welcome'),
+        name:'welcome2',
+        meta:{
+          title:'欢迎页2',
+          //icon:'el-icon-service',
         },
       },
     ],
   },
   
   { 
-    path: '/home',
+    path: '/home2',
     component: Home,//这有个router-view,孩子节点才生效
-    name:'home',
+    name:'home2',
     meta:{
       title:'TV首页管理',
       icon:'el-icon-menu',
@@ -52,9 +89,9 @@ export default [
   
   
   { 
-    path: '/home',
+    path: '/home3',
     component: Home,//这有个router-view,孩子节点才生效
-    name:'home',
+    name:'home3',
     meta:{
       title:'菜单组1',
       icon:'el-icon-menu',
@@ -65,7 +102,7 @@ export default [
         component:()=>import('@/view/test/test1'),
         name:'test1',
         meta:{
-          title:'测试页1',
+          title:'测试页1测试页1测试页1测试页1测试页1',
         },
       },
     
@@ -84,6 +121,26 @@ export default [
         meta:{
           title:'父子通讯demo',
         },
+      },
+      {
+        component:contentRouter,
+        path:'/contentRouter44',
+        name:'contentRouter44',
+        meta:{
+          title:'小学欧迪芬',
+          icon:'el-icon-service',
+        },
+        children: [
+          {
+            path:'/welcome4',
+            component:()=>import('@/view/welcome'),
+            name:'welcome4',
+            meta:{
+              title:'欢迎页4欢迎页4欢迎页4欢迎页4欢迎页4',
+              //icon:'el-icon-service',
+            },
+          },
+        ],
       },
     ]
   },
