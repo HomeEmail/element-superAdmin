@@ -1,5 +1,5 @@
 <template>
-  <keep-alive :include="cacheRoutes"><router-view></router-view></keep-alive>
+  <keep-alive :include="cacheRoutes"><router-view @close-page="removeTabByRoute"></router-view></keep-alive>
 </template>
 <script>
 import routesConfig from '@/router/config.js';
@@ -26,6 +26,11 @@ export default {
       tempFn(this.routes);
       console.log('cacheRoutes',ary);
       return ary;
+    },
+  },
+  methods: {
+    removeTabByRoute(route){ //关闭指定路由，比如关闭当前路由 给路由视图的事件 close-page 这里传给上一级路由视图
+      this.$emit('close-page',route);
     },
   },
   

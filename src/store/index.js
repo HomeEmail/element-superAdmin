@@ -12,14 +12,14 @@ const fileProfix = {
   audioProfix: ""     //音频前缀
 };
 const userInfo = {
-  userName:''
+  userName:'navi'
 };
 const todos = [
   { id: 1, text: '...', done: true },
   { id: 2, text: '...', done: false }
 ];
 
-const state = { //组件上用mapState
+const state = { //组件上用 mapState
   fileProfix, //文件前缀
   userInfo,
   todos,

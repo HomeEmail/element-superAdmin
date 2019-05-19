@@ -1,6 +1,9 @@
 <template>
 <div class="testPage">
 	<h1>test</h1>
+  <button @click="goPage">新建一个欢迎页4</button>
+  <button @click="closePage">关闭</button>
+  <button @click="lastPage">返回</button>
 </div>
 </template>
 
@@ -24,6 +27,16 @@
       console.log('test1 destroyed');
     },
     methods: {
+      closePage(){
+        this.$emit('close-page',this.$route);
+      },
+      lastPage(){
+        this.$router.go(-1);
+      },
+      goPage(){
+        this.$router.push({name:'welcome',query:{name:'水电费',id:new Date().getTime()}});
+      },
+      
     },
     watch: {
       '$route': function (to, from) {
