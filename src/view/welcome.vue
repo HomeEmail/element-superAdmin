@@ -13,34 +13,35 @@
     name: 'welcome',
     data(){
       return {
-        userName:'',
+        userName:'sfdfssd',
         dateStr:''
       }
     },
-    methods: {
-      handleExit(index, row) {
-        // console.log(index, row);
-        // this.$router.push('/Login')
-      }
+    
+    created() {
+      console.log('welcome created');
+    },
+    mounted() {
+      console.log('welcome mounted');
+      
+      this.dateStr=new Date();
+    },
+    activated() {
+      console.log('welcome activated');
+    },
+    deactivated() {
+      console.log('welcome deactivated');
+    },
+    destroyed() {
+      console.log('welcome destroyed');
     },
     watch: {
       '$route': function (to, from) {
 
       }
     },
-    mounted(){
-
+    methods: {
     },
-    created(){
-      this.userName=this.$store.state.userInfo.userName;
-      this.dateStr=new Date();
-    },
-    activated(){
-
-    },
-    destroyed(){
-
-    }
   }
 </script>
 

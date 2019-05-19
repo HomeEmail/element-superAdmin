@@ -13,7 +13,6 @@ export default [
       icon:'el-icon-service',
       hideAtAsideMenu:true,
       hideAtBreadcrumbsNav:true,
-      needCache:true,
       hideAtTabNav:true,
     },
     children: [
@@ -24,39 +23,6 @@ export default [
         meta:{
           title:'欢迎页3',
           icon:'el-icon-service',
-        },
-      },
-    ],
-  },
-  { 
-    path: '/home1',
-    component: Home,//这有个router-view,孩子节点才生效
-    name:'home1',
-    meta:{
-      title:'欢迎1',
-      icon:'el-icon-service',
-      hideAtAsideMenu:false,
-      hideAtBreadcrumbsNav:true,
-      needCache:true,
-      hideAtTabNav:true,
-    },
-    children: [
-      {
-        path:'/welcome1',
-        component:()=>import('@/view/welcome'),
-        name:'welcome1',
-        meta:{
-          title:'欢迎页1',
-          //icon:'el-icon-service',
-        },
-      },
-      {
-        path:'/welcome2',
-        component:()=>import('@/view/welcome'),
-        name:'welcome2',
-        meta:{
-          title:'欢迎页2',
-          //icon:'el-icon-service',
         },
       },
     ],
@@ -103,6 +69,7 @@ export default [
         name:'test1',
         meta:{
           title:'测试页1测试页1测试页1测试页1测试页1',
+          needCache:true,
         },
       },
     
@@ -125,18 +92,20 @@ export default [
       {
         component:contentRouter,
         path:'/contentRouter44',
-        name:'contentRouter44',
+        name:'contentRouter',//contentRouter组件下有孩子的，这个层级的name要和组件contentRouter里的name一样，这样孩子的缓冲打开才能生效
         meta:{
           title:'小学欧迪芬',
           icon:'el-icon-service',
+          needCache:true,
         },
         children: [
           {
             path:'/welcome4',
             component:()=>import('@/view/welcome'),
-            name:'welcome4',
+            name:'welcome', //如打开里缓存 name 要和组件里的name一样才能缓存
             meta:{
               title:'欢迎页4欢迎页4欢迎页4欢迎页4欢迎页4',
+              needCache:true,
               //icon:'el-icon-service',
             },
           },

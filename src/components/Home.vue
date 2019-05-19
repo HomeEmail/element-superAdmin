@@ -21,7 +21,7 @@
       <div class="asideCollapseBtLine" @click="collapseBtClick"><i :class="isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i></div> <!-- el-icon-d-arrow-right -->
     </div>
     <div class="mainBox" :style="mainBoxCss">
-      <router-view></router-view>
+      <keep-alive :include="cacheRoutes"><router-view></router-view></keep-alive>
     </div>
   </div>
 
@@ -59,6 +59,22 @@
         return {
           left:this.asideWidth+'px',
         };
+      },
+      cacheRoutes(){
+        let ary=[];
+        let tempFn=(a)=>{
+          a.forEach((v,i)=>{
+            if(!!v.meta&&!!v.meta.needCache){
+              !!v.name&&ary.push(v.name);
+            }
+            if(!!v.children&&v.children.length>0){
+              tempFn(v.children);
+            }
+          });
+        };
+        tempFn(this.routes);
+        console.log('cacheRoutes',ary);
+        return ary;
       },
     },
     components:{
@@ -131,6 +147,7 @@
       white-space: nowrap;
       .submenuTitle{
         padding-left: 64px;
+        display: none;
       }
     }
     .el-submenu__icon-arrow {
@@ -181,6 +198,8 @@
     position: relative;
     z-index: 2;
     overflow:auto;
+    transition: all 300ms;
+    box-shadow: 0px 4px 6px 0px #dddddd;
   }
   .mainBox{
     overflow:auto;
@@ -190,6 +209,7 @@
     right: 0px;
     top:0px;
     z-index: 1;
+    transition: all 300ms;
   }
   .el-menu{
     border-right:0px;
