@@ -107,6 +107,7 @@
     mounted(){
       
       this.menuDefaultActive=this.$route.path;
+      console.log('menuDefaultActive',this.menuDefaultActive);
     },
     created(){
       this.userName= 'user1';//this.$store.state.userInfo.userName;

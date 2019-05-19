@@ -1,5 +1,5 @@
 <template>
-  <div>熊猫乐园首页</div>
+  <div style="padding:20px;">熊猫首页</div>
 </template>
 <script>
 export default {
