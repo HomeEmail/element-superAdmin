@@ -211,7 +211,17 @@
         let tabs = this.editableTabs;
         if(!!!tabs||tabs.length<=1) return;//规定最后一个tab不能移除
         let nextTab=null;
-        if(!isGoBack){
+        if(!!isGoBack){
+          //对于上一个历史路由，先看看tabs里有木有，没有表示之前关闭了，那就去上一个或下一个，有，就用上一个历史路由
+          let uniqueName = this.getRouteUniqueName(this.lastRoute);
+          let b=this.checkRouteUniqueNameIsInTabs(uniqueName);
+          if(!!b){
+            nextTab=this.createTabFromRoute(this.lastRoute);
+          }else{
+            nextTab=null;
+          }
+        }
+        if(!isGoBack||!!!nextTab){
           let activeName = this.editableTabsValue;
           if (activeName === targetName) {
             tabs.forEach((tab, index) => {
@@ -225,9 +235,8 @@
           }
           
           this.editableTabsValue = activeName;
-        }else{
-          nextTab=this.createTabFromRoute(this.lastRoute);
         }
+        
         this.editableTabs = tabs.filter(tab => tab.meta.uniqueName !== targetName);
 
         this.$router.push({...nextTab});
