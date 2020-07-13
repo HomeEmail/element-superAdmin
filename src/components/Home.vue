@@ -14,7 +14,9 @@
 
   <div class="layoutCenter">
     <div class="asideBox" :style="asideBoxCss">
-      <el-menu @open="handleOpen" @close="handleClose" :router="true" :collapse="isCollapse" :default-active="menuDefaultActive">
+      <el-menu @open="handleOpen" @close="handleClose" :router="true"
+        :collapse-transition="false"
+        :collapse="isCollapse" :default-active="menuDefaultActive">
         <aside-menu-item :routes="routes"></aside-menu-item>
       </el-menu>
 
