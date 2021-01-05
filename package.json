@@ -11,7 +11,7 @@
     "test": "npm run e2e"
   },
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.21.1",
     "echarts": "^3.5.1",
     "element-ui": "^2.0.11",
     "vue": "^2.2.2",
